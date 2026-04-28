@@ -1,5 +1,7 @@
 import os
 
+from google.genai import types
+
 
 def write_file(working_directory, file_path, content):
     try:
@@ -19,3 +21,21 @@ def write_file(working_directory, file_path, content):
 
     except Exception as e:
         return f"Error reading file: {e}"
+
+
+schema_write_file = types.FunctionDeclaration(
+    name="write_file",
+    description="Writes text content to a specified file within the working directory (overwriting if the file exists)",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="Path where the file should be created at. Must be inside working_directory",
+            ),
+            "content": types.Schema(
+                type=types.Type.STRING, description="Content to write inside the file"
+            ),
+        },
+    ),
+)
