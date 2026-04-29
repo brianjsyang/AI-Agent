@@ -43,6 +43,7 @@ def main():
                 return
         except Exception as e:
             print(f"Error in generate_content: {e}")
+            break  # something wrong with API. Stop program
 
     # consumed all iteration chances. Exit system
     print(f"Maximum iterations ({MAX_ITERS}) reached")
